@@ -8,7 +8,7 @@ void Page_Dummypede::Draw() const{
 	if (state >= 1) {
 		if (GameControl::flag_visited_dark) {
 			TextureAsset(U"shortcut").draw(darkpage_shortcut_pos, darkpage_shorcut_col);
-		}
+}
 		if (GameControl::flag_visited_darker) {
 			TextureAsset(U"shortcut").draw(darkerpage_shortcut_pos, darkerpage_shorcut_col);
 		}
@@ -125,7 +125,7 @@ void Page_Dummypede::Update(){
 			darkerpage_shorcut_col = Palette::Cornflowerblue;
 			if (MouseL.down()) {
 				manager.add_page(std::make_shared<Page_Dark2>(manager));
-			}
+		}
 		}
 		else {
 			darkerpage_shorcut_col = Palette::White;
@@ -139,9 +139,6 @@ Page_Dummypede::Page_Dummypede(WindowSystemManager& manager)
 	:WindowSystem(Vec2(300, 100), Size(600, 600), U"Dummypede"),
 	manager(manager),
 	centipede(Vec2(size.x/2 - 100, size.y + size.y * 0.12), size.movedBy(size.x/2, 0), 7, 15),
-	dest(Vec2::Zero()),
-	darkpage_shortcut_pos(Vec2(20, size.y - 50)),
-	darkerpage_shortcut_pos(Vec2(70, size.y - 50)) {
 	// centipedeの設定など
 	centipede.set_interval(15 * 2 + 30);
 	centipede.set_legs_anim_flag(false);
