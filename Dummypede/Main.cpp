@@ -80,7 +80,7 @@ void Main()
 	// manager.add_page(std::make_shared<Page_MukadeShell>(manager), false);
 	// manager.add_page(std::make_shared<Page_Password>(manager), false);
 	// manager.add_page(std::make_shared<Page_SelfIntroduction>(manager));
-	// manager.add_page(std::make_shared<Page_Dummypede>(manager));
+	manager.add_page(std::make_shared<Page_Dummypede>(manager));
 	// manager.add_page(std::make_shared<Page_Dark>(manager));
 	// manager.add_page(std::make_shared<Page_AlotofFiles>(manager));
 	// manager.add_page(std::make_shared<Page_Dark2>(manager));
@@ -98,7 +98,7 @@ void Main()
 	// manager.add_page(std::make_shared<Page_Ending>());
 	// -----
 
-	manager.add_page(std::make_shared<Page_Opening>(manager), false);
+	// manager.add_page(std::make_shared<Page_Opening>(manager), false);
 
 	// Desktopを生成
 	Desktop desktop(manager);

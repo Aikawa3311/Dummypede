@@ -82,6 +82,9 @@ public:
 		// 自己紹介ページのSelfintroductionの文字
 		TextureAsset::Register(U"selfintroduction", Resource(U"image/selfintroduction.png"));
 
+		// DummypedeからDarkページへのショートカットアイコン
+		TextureAsset::Register(U"shortcut", 0xf35d_icon, 30);
+
 		// DesktopIcon関連
 		// TextureAsset::Register(U"Shortcut", 0xf26b_icon, 20);
 		// TextureAsset::Register(U"Only1Web", 0xf015_icon, 40);

@@ -69,4 +69,7 @@ Page_Dark2::Page_Dark2(WindowSystemManager& manager)
 	positions[0] = Vec2(275, Scene::Height() / 2 - 75);
 	positions[1] = Vec2(405, Scene::Height() / 2 - 75);
 	positions[2] = Vec2(535, Scene::Height() / 2 - 75);
+
+	// Darkページ到達フラグをオンに
+	GameControl::flag_visited_darker = true;
 }
