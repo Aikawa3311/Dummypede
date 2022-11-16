@@ -30,8 +30,6 @@ void Page_CardkeyReader::Draw() const{
 	RectF rect = reader.stretched(10);
 	FontAsset(U"RegularDot")(str).drawAt((size/2).movedBy(0, 124), Palette::Green);
 	Vec2 p0 = rect.pos, p1 = p0.movedBy(rect.w, 0), p2 = p0.movedBy(0, rect.h), p3 = p1.movedBy(0, rect.h);
-	reader.drawFrame(3, Palette::Green);
-	guage.drawFrame(3, Palette::Green);
 
 	// click hereの文字
 	if (state != 1) {
@@ -64,10 +62,6 @@ void Page_CardkeyReader::Draw() const{
 		// RectF(guage.stretched(-5 - guage.w * (1 - guage_timer.sF() / 2.0), -5)).draw(Palette::Green);
 	}
 
-	// スキャン風のエフェクト
-	for (int i = 0; i < reader.w; ++i) {
-		Line(reader.x + i, reader.y, reader.x + i, reader.y + reader.h).draw(ColorF(1, 1, 1, sync_anim_function(i)));
-	}
 }
 
 void Page_CardkeyReader::Update(){
