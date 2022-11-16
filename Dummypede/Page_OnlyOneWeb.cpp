@@ -76,6 +76,9 @@ void Page_OnlyOneWeb::jump_page() const{
 	else if (tmp_text == U"mikipedia") {
 		manager.add_page(std::make_shared<Page_ISBN>(manager, U"Mikipedia"));
 	}
+	else if (tmp_text == U"creepy") {
+		manager.add_page(std::make_shared<Page_Creepy>());
+	}
 	else {
 		manager.add_page(std::make_shared<Page_404>());
 	}

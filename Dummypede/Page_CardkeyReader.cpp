@@ -38,6 +38,14 @@ void Page_CardkeyReader::Draw() const{
 		FontAsset(U"RegularDot")(U"click here").drawAt((size / 2).movedBy(0, -20), Palette::Green);
 	}
 
+	// スキャン風のエフェクト
+	for (int i = 0; i < reader.w; ++i) {
+		Line(reader.x + i, reader.y, reader.x + i, reader.y + reader.h).draw(ColorF(1, 1, 1, sync_anim_function(i)));
+	}
+
+	reader.drawFrame(3, Palette::Green);
+	guage.drawFrame(3, Palette::Green);
+
 	// 枠の描画
 	Line(p0, p0.movedBy( rect.w * 0.2,  0)).draw(3, Palette::Green);
 	Line(p0, p0.movedBy( 0,  rect.h * 0.2)).draw(3, Palette::Green);

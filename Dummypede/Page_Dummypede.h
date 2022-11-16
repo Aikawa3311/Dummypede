@@ -12,6 +12,9 @@
 #include "Page_Password.h"
 #include "Page_CentipedeGame.h"
 
+#include "Page_Dark.h"
+#include "Page_Dark2.h"
+
 class Page_Dummypede : public WindowSystem {
 private:
 	WindowSystemManager& manager;
@@ -20,6 +23,12 @@ private:
 	int state = 0;
 	Stopwatch anim_timer;
 	Vec2 dest;
+
+	// Darkページへのショートカット
+	Vec2 darkpage_shortcut_pos;
+	Vec2 darkerpage_shortcut_pos;
+	Color darkpage_shorcut_col;
+	Color darkerpage_shorcut_col;
 
 	Centipede centipede;
 
