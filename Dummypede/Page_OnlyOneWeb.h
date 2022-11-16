@@ -14,6 +14,7 @@
 #include "Page_MyriadTetrapod.h"
 #include "Page_Pigpen.h"
 #include "Page_ISBN.h"
+#include "Page_Creepy.h"
 
 class Page_OnlyOneWeb : public WindowSystem {
 private:

@@ -315,6 +315,9 @@
     <ClCompile Include="Page_UnixClock.cpp">
       <Filter>Source Files\Pages</Filter>
     </ClCompile>
+    <ClCompile Include="Page_Creepy.cpp">
+      <Filter>Source Files\Pages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -1116,6 +1119,9 @@
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
     <ClInclude Include="Page_UnixClock.h">
+      <Filter>Header Files\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_Creepy.h">
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
   </ItemGroup>

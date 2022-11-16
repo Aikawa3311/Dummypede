@@ -41,6 +41,11 @@ namespace GameControl {
 	// readme書き換えフラグ
 	extern bool flag_readme;
 
+	// Darkpage到達フラグ
+	extern bool flag_visited_dark;
+	extern bool flag_visited_darker;
+
+
 	namespace Achievement {
 		// centipedeで100点以上
 		extern bool hundred_centipede;

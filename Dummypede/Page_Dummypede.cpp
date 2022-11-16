@@ -5,6 +5,14 @@ void Page_Dummypede::Draw() const{
 	RectF(Vec2::Zero(), size).draw(Palette::Black);
 	// Circle(dest, 20).draw(Palette::Red);
 	centipede.Draw();
+	if (state >= 1) {
+		if (GameControl::flag_visited_dark) {
+			TextureAsset(U"shortcut").draw(darkpage_shortcut_pos, darkpage_shorcut_col);
+}
+		if (GameControl::flag_visited_darker) {
+			TextureAsset(U"shortcut").draw(darkerpage_shortcut_pos, darkerpage_shorcut_col);
+		}
+	}
 }
 
 void Page_Dummypede::Update(){
@@ -23,6 +31,8 @@ void Page_Dummypede::Update(){
 		// 起動中
 		if (!active) return;
 		auto const& bodies = centipede.get_bodies();
+
+		// centipedeの体の各リンク
 		for (int i = 0; i < centipede.get_length(); ++i) {
 			// ハイライトする
 			if (bodies.at(i).get_circle().intersects(Cursor::PosF().movedBy(-pos))) {
@@ -97,6 +107,30 @@ void Page_Dummypede::Update(){
 				}
 			}
 		}
+
+		// darkページへのショートカット
+		if (RectF(darkpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
+			GameControl::decorator.RequestStyle(U"hand");
+			darkpage_shorcut_col = Palette::Cornflowerblue;
+			if (MouseL.down()) {
+				manager.add_page(std::make_shared<Page_Dark>(manager));
+			}
+		}
+		else {
+			darkpage_shorcut_col = Palette::White;
+		}
+
+		if (RectF(darkerpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
+			GameControl::decorator.RequestStyle(U"hand");
+			darkerpage_shorcut_col = Palette::Cornflowerblue;
+			if (MouseL.down()) {
+				manager.add_page(std::make_shared<Page_Dark2>(manager));
+		}
+		}
+		else {
+			darkerpage_shorcut_col = Palette::White;
+		}
+
 		break;
 	}
 }
@@ -105,7 +139,6 @@ Page_Dummypede::Page_Dummypede(WindowSystemManager& manager)
 	:WindowSystem(Vec2(300, 100), Size(600, 600), U"Dummypede"),
 	manager(manager),
 	centipede(Vec2(size.x/2 - 100, size.y + size.y * 0.12), size.movedBy(size.x/2, 0), 7, 15),
-	dest(Vec2::Zero()){
 	// centipedeの設定など
 	centipede.set_interval(15 * 2 + 30);
 	centipede.set_legs_anim_flag(false);

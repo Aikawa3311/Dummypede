@@ -32,7 +32,6 @@ void Page_UnixClock::Draw() const {
 	bool flag_grab = hands_grab.any([](bool const b) -> bool { return b == true; });
 	bool flag_blue = false;
 	for (int i = 0; i < (int)hands.size(); ++i) {
-		if ( active && ((flag_grab && hands_grab[i]) || (!flag_grab && (!flag_blue && hands[i].stretched(10).intersects(Cursor::PosF().movedBy(-pos))))) ) {
 			hands[i].draw(Palette::Skyblue);
 			flag_blue = true;
 		}

@@ -82,6 +82,9 @@ public:
 		// 自己紹介ページのSelfintroductionの文字
 		TextureAsset::Register(U"selfintroduction", Resource(U"image/selfintroduction.png"));
 
+		// DummypedeからDarkページへのショートカットアイコン
+		TextureAsset::Register(U"shortcut", 0xf35d_icon, 30);
+
 		// DesktopIcon関連
 		// TextureAsset::Register(U"Shortcut", 0xf26b_icon, 20);
 		// TextureAsset::Register(U"Only1Web", 0xf015_icon, 40);
@@ -102,7 +105,7 @@ public:
 		TextureAsset::Register(U"MiniBoss", 0xf0ac_icon, 30);
 		TextureAsset::Register(U"MikipediaIcon", 0xf57e_icon, 50);
 		TextureAsset::Register(U"MikipediaSearch", 0xf002_icon, 20);
-		TextureAsset::Register(U"Mlogo", Resource(U"image/M.png"));
+		TextureAsset::Register(U"Smile", 0xf118_icon, 30);
 
 		// その他画像系
 		TextureAsset::Register(U"ayfabtu", Resource(U"image/mukade.PNG"));
@@ -118,6 +121,7 @@ public:
 		TextureAsset::Register(U"arrow", Resource(U"image/arrow.PNG"));
 		TextureAsset::Register(U"Sword", Resource(U"image/sword.PNG"));
 		TextureAsset::Register(U"Pigpen", Resource(U"image/pigpen.PNG"));
+		TextureAsset::Register(U"Mlogo", Resource(U"image/M.png"));
 
 		// bossの画像
 		TextureAsset::Register(U"eye_black1", Resource(U"image/eye_black1.png"));

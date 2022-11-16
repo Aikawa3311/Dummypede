@@ -23,6 +23,10 @@ bool GameControl::flag_shader = true;
 
 bool GameControl::flag_readme = false;
 
+bool GameControl::flag_visited_dark = false;
+
+bool GameControl::flag_visited_darker = false;
+
 String GameControl::cardkey_str(){
 	String str = U"┏━━━━━━━━┓\n┃Cardkey 　　　　┃\n┃　┏━━━━━┓┃\n┣━┫" + GameControl::cardkey_date + U"┣┫\n┗━┻━━━━━┻┛";
 	return str;
