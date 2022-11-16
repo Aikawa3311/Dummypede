@@ -131,6 +131,7 @@
     <ClCompile Include="Page_Boss_MukadeShell.cpp" />
     <ClCompile Include="Page_CardkeyReader.cpp" />
     <ClCompile Include="Page_CentipedeGame.cpp" />
+    <ClCompile Include="Page_Creepy.cpp" />
     <ClCompile Include="Page_Dark.cpp" />
     <ClCompile Include="Page_Dark2.cpp" />
     <ClCompile Include="Page_DarkPage1.cpp" />
@@ -386,6 +387,7 @@
     <ClInclude Include="Page_Boss_MukadeShell.h" />
     <ClInclude Include="Page_CardkeyReader.h" />
     <ClInclude Include="Page_CentipedeGame.h" />
+    <ClInclude Include="Page_Creepy.h" />
     <ClInclude Include="Page_Dark.h" />
     <ClInclude Include="Page_Dark2.h" />
     <ClInclude Include="Page_DarkPage1.h" />
