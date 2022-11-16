@@ -96,6 +96,7 @@ void Main()
 	// manager.add_page(std::make_shared<Page_ScoreServer>());
 	// manager.add_page(std::make_shared<Page_UnixClock>());
 	// manager.add_page(std::make_shared<Page_Ending>());
+	// test
 	// -----
 
 	manager.add_page(std::make_shared<Page_Opening>(manager), false);
