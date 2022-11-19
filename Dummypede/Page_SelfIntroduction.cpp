@@ -92,12 +92,20 @@ Page_SelfIntroduction::Page_SelfIntroduction(WindowSystemManager & manager)
 	:WindowSystem(Vec2(160, 190), Size(400, 400), U"self introduction"),
 	manager(manager){
 
-	name_column = random_digit_str(4);
+	/*name_column = random_digit_str(4);
 	name = random_digit_str(5);
 	twitter_column = random_digit_str(3);
 	twitter_name = random_digit_str(6);
 	youtube_column = random_digit_str(3);
-	youtube_name = random_digit_str(5);
+	youtube_name = random_digit_str(5);*/
+
+	// ランダムの代わりに適当な固定値を用意
+	name_column = U"7418";
+	name = U"52963";
+	twitter_column = U"075";
+	twitter_name = U"193046";
+	youtube_column = U"388";
+	youtube_name = U"21459";
 
 	int const access_level = Page_MukadeShell::get_access_level();
 	if (access_level >= 2) {

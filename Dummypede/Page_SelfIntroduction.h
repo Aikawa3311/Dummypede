@@ -17,7 +17,7 @@ private:
 	void Draw() const override;
 	void Update() override;
 
-	// 任意ケタの数字を文字列として生成
+	// 任意ケタのランダムな数字を文字列として生成
 	String random_digit_str(int const digit);
 
 public:
