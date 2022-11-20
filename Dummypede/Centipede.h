@@ -8,10 +8,10 @@ class CentipedeBody
 private:
 	Circle body;
 	Vec2 dir;
-	double noise;
+	double noise;			// 
 	Color col;
 	Color col_inner;
-	bool legs_anim_flag; // 脚を動かすかどうか
+	bool legs_anim_flag;	// 脚を動かすかどうか
 
 public:
 	CentipedeBody(Vec2 const pos = Vec2(0, 0), int const size = 10, double const noise = -1);

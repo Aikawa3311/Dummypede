@@ -36,6 +36,9 @@ void GameControl::readme_change(){
 	// readme.mdが無い場合は実行しない
 	if (!FileSystem::Exists(U"./readme.md")) return;
 
+	// 以降の処理中断
+	return;
+
 	// readmeをREADMEにリネーム
 	FileSystem::Rename(U"readme.md", U"README.md");
 

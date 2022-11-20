@@ -109,6 +109,10 @@ void Main()
 
 	while (System::Update())
 	{
+		/*System::Sleep(100ms);
+		ClearPrint();
+		Print << Profiler::FPS();*/
+
 		if (KeyControl.down()) {
 			GameControl::flag_shader ^= 1;
 		}
