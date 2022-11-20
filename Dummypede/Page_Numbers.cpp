@@ -6,6 +6,7 @@ void Page_Numbers::Draw() const{
 	rect.drawFrame(2, Palette::White);
 	TextureAsset(U"numbers").draw(rect.pos);
 	Shape2D::RectBalloon(RectF(rect.pos.movedBy(190, 35), 180, 135), rect.pos.movedBy(210, 190)).drawFrame(2, Palette::White);
+	RectF(rect.pos, Vec2(rect.size.x, 30)).draw(Palette::Black).drawFrame(2, Palette::White);
 	FontAsset(U"RegularDot")(U"I've seen this\nsomewhere...").draw(rect.pos.movedBy(200, 75), Palette::White);
 	thinking_tex.resized(40).drawAt((size/2).movedBy(0, 125));
 }
