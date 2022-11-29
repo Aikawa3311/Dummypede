@@ -166,7 +166,6 @@
     <ClCompile Include="Page_SelfIntroductionImage.cpp" />
     <ClCompile Include="Page_UnixClock.cpp" />
     <ClCompile Include="Page_UnixTime.cpp" />
-    <ClCompile Include="Page_Video.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -422,7 +421,6 @@
     <ClInclude Include="Page_SelfIntroductionImage.h" />
     <ClInclude Include="Page_UnixClock.h" />
     <ClInclude Include="Page_UnixTime.h" />
-    <ClInclude Include="Page_Video.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Template_Page.h" />
     <ClInclude Include="WindowHeadFrame.h" />

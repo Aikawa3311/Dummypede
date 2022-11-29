@@ -25,7 +25,6 @@
 #include "Page_Opening.h"
 #include "Page_Pigpen.h"
 #include "Page_ISBN.h"
-#include "Page_Video.h"
 #include "Page_UnixTime.h"
 #include "Page_ScoreServer.h"
 #include "Page_UnixClock.h"
@@ -90,7 +89,6 @@ void Main()
 	// manager.add_page(std::make_shared<Page_LastPassword>());
 	// manager.add_page(std::make_shared<Page_Pigpen>());
 	// manager.add_page(std::make_shared<Page_ISBN>(manager, U"ISBN"));
-	// manager.add_page(std::make_shared<Page_Video>());
 	// manager.add_page(std::make_shared<Page_Myriapod>(manager));
 	// manager.add_page(std::make_shared<Page_UnixTime>());
 	// manager.add_page(std::make_shared<Page_ScoreServer>());

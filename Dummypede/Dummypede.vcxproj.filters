@@ -297,9 +297,6 @@
     <ClCompile Include="Page_SelfIntroductionImage.cpp">
       <Filter>Source Files\Pages</Filter>
     </ClCompile>
-    <ClCompile Include="Page_Video.cpp">
-      <Filter>Source Files\Pages</Filter>
-    </ClCompile>
     <ClCompile Include="Page_Myriapod.cpp">
       <Filter>Source Files\Pages</Filter>
     </ClCompile>
@@ -1101,9 +1098,6 @@
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
     <ClInclude Include="Page_SelfIntroductionImage.h">
-      <Filter>Header Files\Pages</Filter>
-    </ClInclude>
-    <ClInclude Include="Page_Video.h">
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
     <ClInclude Include="Page_Myriapod.h">
