@@ -64,6 +64,19 @@ void Page_CentipedeGame::Draw() const{
 		if (flag_highscore) {
 			FontAsset(U"BigBit")(U"- NEW RECORD -").drawAt(Vec2(size.x / 2, size.y * 2 / 3 - 50), Palette::Orangered);
 		}
+		FontAsset(U"BigBit")(U">LEFT CLICK TO RETURN TO TITLE<").drawAt(Vec2(size.x / 2, size.y * 4 / 5), Palette::White);
+		// TIPSの描画
+		if (tips_count == 1) {
+			draw_tips(Vec2(10, 70), U"Your score and time remaining\nare displayed here");
+			Line(Vec2(160, 100), Vec2(160, 45)).drawArrow(4.0, Vec2(10.0, 10.0), Palette::White);
+		}
+		else if(tips_count == 2){
+			draw_tips(Vec2(10, 70), U"Centipede's speed increases\nwith each score");
+		}
+		else {
+			draw_tips(Vec2(900, 60), U"Are you still there?\nYou can click this button\nif you feel bored");
+			Line(Vec2(1100, 90), Vec2(1155, 40)).drawArrow(4.0, Vec2(10.0, 10.0), Palette::White);
+		}
 	}
 }
 
@@ -78,7 +91,7 @@ void Page_CentipedeGame::Update(){
 	else if (state == 3) {
 		// ゲーム画面時
 		// タイトルにスコアとタイムを表示
-		title = U"centipede {} {}"_fmt(score, time_limit - timer.s());
+		title = U"centipede   score:{} time:{}"_fmt(score, time_limit - timer.s());
 		
 		// ムカデの挙動など
 		centipede.set_dest(Cursor::PosF() - pos);
@@ -157,6 +170,12 @@ void Page_CentipedeGame::changestate_game(){
 	timer.restart();
 }
 
+void Page_CentipedeGame::changestate_gameover(){
+	// フラグ変更/変数設定
+	state = 5;
+	++tips_count;
+}
+
 void Page_CentipedeGame::gameover_anim(){
 	switch (animstate_gameover) {
 	case 0:
@@ -185,7 +204,7 @@ void Page_CentipedeGame::gameover_anim(){
 		// ゲームオーバー画面の表示
 		anim_timer.reset();
 		++animstate_gameover;
-		state = 5;
+		changestate_gameover();
 		break;
 	}
 }
@@ -217,5 +236,20 @@ bool Page_CentipedeGame::centipede_selfintersect() const {
 		}
 	}
 	return false;
+}
+
+void Page_CentipedeGame::draw_tips(Vec2 const& draw_pos, String const& text) const {
+	RectF rect = FontAsset(U"RegularBit")(text).region();
+	rect.w = Max(rect.w, 100.0);
+	rect.h = Max(rect.h, 60.0);
+
+	// 大枠
+	RectF(draw_pos.movedBy(10, 25), rect.size).stretched(10).drawFrame(4, Palette::White).draw(Palette::Black);
+	// TIPS用の枠
+	RectF(draw_pos.movedBy(20, 0), Vec2(80, 25)).drawFrame(4, Palette::White).draw(Palette::Black);
+
+	// テキスト
+	FontAsset(U"BigBit")(U"TIPS!").draw(draw_pos.movedBy(30, -3), Palette::White);
+	FontAsset(U"RegularBit")(text).draw(draw_pos.movedBy(10, 30), Palette::White);
 }
 

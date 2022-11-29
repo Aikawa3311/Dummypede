@@ -17,6 +17,9 @@ private:
 	int anim_increment;		// カウントアップ用
 	int animstate_gameover; // ゲームオーバーアニメの進行段階
 
+	// tipsのカウント
+	int tips_count = 0;
+
 	// ハイスコア更新フラグ
 	bool flag_highscore = false;
 
@@ -35,6 +38,8 @@ private:
 	void changestate_gameover_anim();
 	// ゲーム画面起動
 	void changestate_game();
+	// ゲームオーバー中起動
+	void changestate_gameover();
 	// ゲームオーバー時のアニメーション
 	void gameover_anim();
 
@@ -43,6 +48,9 @@ private:
 	bool bio_intersect();
 	// ムカデの先頭が自身の胴体と接触したかチェック
 	bool centipede_selfintersect() const;
+
+	// TIPSのdraw
+	void draw_tips(Vec2 const & draw_pos, String const & text) const;
 
 public:
 	Page_CentipedeGame();

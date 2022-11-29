@@ -13,7 +13,8 @@ public:
 		FontAsset::Register(U"BoldRegular", 20, Typeface::Bold);												// 寄付のお願いなど
 		FontAsset::Register(U"BigRegular", 30, Typeface::Medium);												// パスワードページの合言葉の表記など
 		FontAsset::Register(U"HugeRegular", 50, Typeface::Medium);												// ISBNページの記事タイトル部分
-		FontAsset::Register(U"BigBit", 24, Typeface::Medium, FontStyle::Bitmap);								// CentipedeGameのLEFT CLICK TO STARTなど
+		FontAsset::Register(U"RegularBit", 22, Typeface::Medium, FontStyle::Bitmap);							// CentipedeGameのLEFT CLICK TO STARTなど
+		FontAsset::Register(U"BigBit", 24, Typeface::Regular, FontStyle::Bitmap);								// CentipedeGameのLEFT CLICK TO STARTなど
 		FontAsset::Register(U"HugeBit", 50, Typeface::Medium, FontStyle::Bitmap);								// CentipedeGameのタイトル画面など
 		// o ロックンロール
 		FontAsset::Register(U"WindowTitle", 16, Resource(U"font/RocknRollOne-Regular.ttf"));					// ウィンドウのタイトル
