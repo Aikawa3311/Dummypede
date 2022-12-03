@@ -29,6 +29,7 @@
 #include "Page_ScoreServer.h"
 #include "Page_UnixClock.h"
 #include "Page_Ending.h"
+#include "Page_Sunset.h"
 
 // シェーダーの定数バッファ
 struct PSPixelSize{
@@ -94,6 +95,7 @@ void Main()
 	// manager.add_page(std::make_shared<Page_ScoreServer>());
 	// manager.add_page(std::make_shared<Page_UnixClock>());
 	// manager.add_page(std::make_shared<Page_Ending>());
+	// manager.add_page(std::make_shared<Page_Sunset>());
 	// -----
 
 	manager.add_page(std::make_shared<Page_Opening>(manager), false);

@@ -8,6 +8,11 @@ void Page_Dark2::Draw() const {
 	for (int i = 0; i < (int)links.size(); ++i) {
 		links[i].draw(cols[i]);
 	}
+
+
+	// take a break...
+	FontAsset(U"RegularConsol")(U"take a break").draw(Arg::bottomRight = size.movedBy(-10, -10), Palette::White);
+	Line(link.pos.movedBy(0, link.h), link.pos.movedBy(link.w, link.h)).draw(1.5, Palette::White);
 }
 
 void Page_Dark2::Update() {
@@ -46,6 +51,20 @@ void Page_Dark2::Update() {
 			}
 		}
 	}
+
+	// リンクの押下判定
+	if (link.intersects(Cursor::PosF().movedBy(-pos))) {
+		GameControl::decorator.RequestStyle(U"hand");
+		if (MouseL.down()) {
+			int num = manager.page_name_to_page_number(U"Sunset");
+			if (num != -1) {
+				manager.focus_page(num);
+			}
+			else {
+				manager.add_page(std::make_shared<Page_Sunset>());
+			}
+		}
+	}
 }
 
 Page_Dark2::Page_Dark2(WindowSystemManager& manager)
@@ -53,7 +72,9 @@ Page_Dark2::Page_Dark2(WindowSystemManager& manager)
 	WindowSystem(Vec2(100, 100), Size(500, 300), U"darker"),
 	links(3),
 	cols(3, Palette::White),
-	positions(3) {
+	positions(3),
+	link(size.movedBy(-144, -40), Size(138, 32))
+{
 	int margin = 32 + 19;
 	/*
 	links[0] = Circle(350, 80, 16);
