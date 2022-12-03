@@ -3,7 +3,7 @@
 
 void Page_Sunset::Draw() const
 {
-	RectF(Vec2::Zero(), size).draw(Palette::Green);
+	// RectF(Vec2::Zero(), size).draw(Palette::Green);
 
 	// rt.clear(ColorF(0, 0, 0, 0));
 	// rt.clear(ColorF(1, 1, 1, 0));
