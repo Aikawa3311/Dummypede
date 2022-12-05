@@ -7,8 +7,10 @@
 
 Staffroll::Staffroll(String const& asset_name, String const& staff)
 	:asset_name(asset_name),
-	staff(staff) {
-	pos = Scene::CenterF().movedBy(900, 0);
+	staff(staff)
+{
+	// pos = Scene::CenterF().movedBy(900, 0);
+	pos = (GameControl::base_size / 2.0).movedBy(GameControl::base_size.x / 2 + 300, 0);
 }
 
 void Staffroll::Draw() const{
@@ -47,7 +49,8 @@ void Page_Ending::Update(){
 		// centipede発進中
 		centipede.Update();
 		// if (centipede.get_body_front().get_pos().distanceFromSq(Scene::CenterF().moveBy(-200, 0)) <= 1) {
-		if (Scene::CenterF().x - 200 - centipede.get_body_front().get_pos().x <= 0) {
+		// if (Scene::CenterF().x - 200 - centipede.get_body_front().get_pos().x <= 0) {
+		if (GameControl::base_size.x / 2.0 - 200 - centipede.get_body_front().get_pos().x <= 0) {
 			changestate_2();
 		}
 		break;
@@ -55,7 +58,8 @@ void Page_Ending::Update(){
 		// 右からスタッフロール
 		staffs[anim_increment].moveBy(Vec2(-Scene::DeltaTime() * 150, 0.0));
 		// if (staffs[anim_increment].get_pos().distanceFromSq(Scene::CenterF().moveBy(-180, 0)) <= 1) {
-		if (staffs[anim_increment].get_pos().x - (Scene::CenterF().x - 180) <= 0) {
+		// if (staffs[anim_increment].get_pos().x - (Scene::CenterF().x - 180) <= 0) {
+		if (staffs[anim_increment].get_pos().x - (GameControl::base_size.x / 2.0 - 180) <= 0) {
 			if (anim_increment + 1 == (int)staffs.size()) {
 				AudioAsset(U"daon").playOneShot(0.7);
 				changestate_3();
@@ -70,7 +74,8 @@ void Page_Ending::Update(){
 	case 3:
 		// ムカデフェードアウト
 		centipede.Update();
-		if (centipede.get_bodies().back().get_pos().x - (Scene::Width() + 150) > 0) {
+		// if (centipede.get_bodies().back().get_pos().x - (Scene::Width() + 150) > 0) {
+		if (centipede.get_bodies().back().get_pos().x - (GameControl::base_size.x + 150) > 0) {
 			changestate_4();
 		}
 		break;
@@ -83,7 +88,8 @@ void Page_Ending::Update(){
 void Page_Ending::changestate_1(){
 	state = 1;
 	timer.restart();
-	centipede.set_dest(Vec2(Scene::CenterF()));
+	// centipede.set_dest(Vec2(Scene::CenterF()));
+	centipede.set_dest(Vec2(GameControl::base_size / 2.0));
 }
 
 void Page_Ending::changestate_2(){
@@ -115,10 +121,12 @@ void Page_Ending::DrawDepth2() const{
 	switch (state) {
 	case 0:
 		// 最初はグラデ描画
-		Scene::Rect().draw(ColorF(1, 1, 1, Min(timer.sF() / 4.0, 1.0)));
+		// Scene::Rect().draw(ColorF(1, 1, 1, Min(timer.sF() / 4.0, 1.0)));
+		Rect(Point::Zero(), GameControl::base_size).draw(ColorF(1, 1, 1, Min(timer.sF() / 4.0, 1.0)));
 		break;
 	default:
-		Scene::Rect().draw(Palette::White);
+		// Scene::Rect().draw(Palette::White);
+		Rect(Point::Zero(), GameControl::base_size).draw(Palette::White);
 		break;
 	}
 	// スタッフ
@@ -128,18 +136,22 @@ void Page_Ending::DrawDepth2() const{
 	if (state == 2) {
 		staffs[anim_increment].Draw();
 	}else if(state == 4){
-		FontAsset(U"ExtraHugeDot")(U"D U M M Y P E D E").drawAt(Scene::CenterF(), Palette::Black);
+		// FontAsset(U"ExtraHugeDot")(U"D U M M Y P E D E").drawAt(Scene::CenterF(), Palette::Black);
+		FontAsset(U"ExtraHugeDot")(U"D U M M Y P E D E").drawAt(GameControl::base_size / 2.0, Palette::Black);
 		if (timer.sF() >= 1.5) {
-			FontAsset(U"HugeDot")(U"END").drawAt(Scene::CenterF().movedBy(300, 200), Palette::Black);
+			// FontAsset(U"HugeDot")(U"END").drawAt(Scene::CenterF().movedBy(300, 200), Palette::Black);
+			FontAsset(U"HugeDot")(U"END").drawAt((GameControl::base_size / 2.0).movedBy(300, 200), Palette::Black);
 		}
 	}
 	centipede.Draw();
 }
 
 Page_Ending::Page_Ending()
-	: WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Ending"),
+	: // WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Ending"),
+	WindowSystem(Vec2(-50, -50), Size(GameControl::base_size).movedBy(100, 100), U"Ending"),
 	state(0),
-	centipede(Vec2(-60, Scene::Height()/2), Scene::CenterF(), 5, 15),
+	// centipede(Vec2(-60, Scene::Height()/2), Scene::CenterF(), 5, 15),
+	centipede(Vec2(-60, GameControl::base_size.y / 2), GameControl::base_size / 2.0, 5, 15),
 	anim_increment(0)
 {
 	centipede.set_interval(35);

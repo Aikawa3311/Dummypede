@@ -77,10 +77,13 @@ Page_MyriadTetrapod::Page_MyriadTetrapod(WindowSystemManager& manager)
 	screen(screen_base),
 	item_num(50),
 	icons_name(item_num),
-	icons_pos(item_num){
+	icons_pos(item_num)
+{
 	for (int i = 0; i < (int)icons_name.size(); ++i) {
 		icons_name[i] = U"selfintroduction_" + Format(Random(0, 9));
-		icons_pos[i] = RandomVec2(RectF(Vec2::Zero(), Scene::Size()).stretched(-100));
+		// icons_pos[i] = RandomVec2(RectF(Vec2::Zero(), Scene::Size()).stretched(-100));
+		icons_pos[i] = RandomVec2(RectF(Vec2::Zero(), GameControl::base_size).stretched(-100));
 	}
-	icon_door = RandomVec2(RectF(Vec2::Zero(), Scene::Size()).stretched(-50));
+	// icon_door = RandomVec2(RectF(Vec2::Zero(), Scene::Size()).stretched(-50));
+	icon_door = RandomVec2(RectF(Vec2::Zero(), GameControl::base_size).stretched(-50));
 }

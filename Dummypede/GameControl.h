@@ -17,6 +17,9 @@
 //};
 
 namespace GameControl {
+	// ベースとなるウィンドウサイズ
+	extern Size base_size;
+
 	// カードキー所持フラグ
 	extern bool flag_cardkey;
 

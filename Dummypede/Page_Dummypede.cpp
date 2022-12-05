@@ -141,7 +141,10 @@ Page_Dummypede::Page_Dummypede(WindowSystemManager& manager)
 	centipede(Vec2(size.x/2 - 100, size.y + size.y * 0.12), size.movedBy(size.x/2, 0), 7, 15),
 	dest(Vec2::Zero()),
 	darkpage_shortcut_pos(Vec2(20, size.y - 50)),
-	darkerpage_shortcut_pos(Vec2(70, size.y - 50)) {
+	darkerpage_shortcut_pos(Vec2(70, size.y - 50)),
+	darkpage_shorcut_col(Palette::White),
+	darkerpage_shorcut_col(Palette::White)
+{
 	// centipedeの設定など
 	centipede.set_interval(15 * 2 + 30);
 	centipede.set_legs_anim_flag(false);

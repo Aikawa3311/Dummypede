@@ -2,7 +2,8 @@
 #include "Page_CentipedeGame.h"
 
 Page_CentipedeGame::Page_CentipedeGame()
-	: WindowSystem(Vec2(2, 2), Scene::Size() - Point(4, 4), U"centipede"),
+	: // WindowSystem(Vec2(2, 2), Scene::Size() - Point(4, 4), U"centipede"),
+	WindowSystem(Vec2(2, 2), GameControl::base_size - Point(4, 4), U"centipede"),
 	score(0),
 	item_pos(Vec2::Zero()),
 	item_name(U""),

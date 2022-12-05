@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <Siv3D.hpp>
 #include "WindowHeadFrame.h"
+// ◆GameControl.hではなく解像度用のヘッダにする
+#include "GameControl.h"
 
 class WindowSystem {
 private:

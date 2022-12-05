@@ -10,6 +10,7 @@ void Page_Light::Update()
 }
 
 Page_Light::Page_Light()
-	:WindowSystem(Scene::Size() - Size(250, 250), Size(200, 200), U"light")
+	: // WindowSystem(Scene::Size() - Size(250, 250), Size(200, 200), U"light")
+	WindowSystem(GameControl::base_size -Size(250, 250), Size(200, 200), U"light")
 {
 }

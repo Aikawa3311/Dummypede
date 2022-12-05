@@ -158,7 +158,8 @@ void Page_Boss_Eye::attack(){
 
 void Page_Boss_Eye::move_pos(){
 	// 移動先を決定
-	dest = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-size)));
+	// dest = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-size)));
+	dest = RandomVec2(RectF(Vec2::Zero(), GameControl::base_size.movedBy(-size)));
 	prev_pos = pos;
 	// 次の移動の準備
 	move_next_timer.restart();

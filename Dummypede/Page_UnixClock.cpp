@@ -171,7 +171,8 @@ Page_UnixClock::Page_UnixClock()
 	hands_grab(6, false),
 	digital_frame((size / 2).movedBy(-130, -50), Vec2(260, 100), 6),
 	link_unix(Vec2(10, size.y - 30), Size(200, 25)),
-	year_range(1970, 2050){
+	year_range(1970, 2050)
+{
 	hands_angle[0] = ((double)(datetime.year - year_range.first) / (year_range.second - year_range.first) * Math::TwoPi);
 	hands_angle[1] = ((double)(datetime.month - 1) / 12 * Math::TwoPi) + 1e-9;
 	hands_angle[2] = ((double)(datetime.day - 1) / Date::DaysInMonth(datetime.year, datetime.month) * Math::TwoPi) + 1e-9;

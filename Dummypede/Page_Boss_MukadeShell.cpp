@@ -122,7 +122,8 @@ void Page_Boss_MukadeShell::command_unknown(){
 }
 
 Page_Boss_MukadeShell::Page_Boss_MukadeShell(WindowSystemManager& manager)
-	:WindowSystem(Scene::Size().movedBy(-400, -300), Size(400, 300), U"MukadeTalker"),
+	: // WindowSystem(Scene::Size().movedBy(-400, -300), Size(400, 300), U"MukadeTalker"),
+	WindowSystem(GameControl::base_size.movedBy(-400, -300), Size(400, 300), U"MukadeTalker"),
 	manager(manager),
 	text(U""),
 	text_bot(U""),

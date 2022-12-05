@@ -56,5 +56,6 @@ void Page_UnixTime::Update(){
 
 Page_UnixTime::Page_UnixTime()
 	:WindowSystem(Vec2(400, 300), Size(400, 100), U"UNIX time"),
-	time(DateTime::Now()){
+	time(DateTime::Now())
+{
 }

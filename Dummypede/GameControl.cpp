@@ -7,6 +7,8 @@
 //	centipede_highscore(0){
 //}
 
+Size GameControl::base_size = Size(1200, 800);
+
 bool GameControl::flag_cardkey = false;
 
 String GameControl::cardkey_date = U"2001/09/09";

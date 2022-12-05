@@ -101,12 +101,18 @@ Page_Dark::Page_Dark(WindowSystemManager& manager)
 	links[3] = Circle(30 + margin * 6, size.y / 2, 16);
 	links[4] = Circle(30 + margin * 7, size.y / 2, 16);
 	links[5] = Circle(30 + margin * 8, size.y / 2, 16);
-	positions[0] = Vec2(15, Scene::Height() / 2 - 75);
+	/*positions[0] = Vec2(15, Scene::Height() / 2 - 75);
 	positions[1] = Vec2(145, Scene::Height() / 2 - 75);
 	positions[2] = Vec2(665, Scene::Height() / 2 - 75);
 	positions[3] = Vec2(795, Scene::Height() / 2 - 75);
 	positions[4] = Vec2(925, Scene::Height() / 2 - 75);
-	positions[5] = Vec2(1055, Scene::Height() / 2 - 75);
+	positions[5] = Vec2(1055, Scene::Height() / 2 - 75);*/
+	positions[0] = Vec2(15, GameControl::base_size.y / 2 - 75);
+	positions[1] = Vec2(145, GameControl::base_size.y / 2 - 75);
+	positions[2] = Vec2(665, GameControl::base_size.y / 2 - 75);
+	positions[3] = Vec2(795, GameControl::base_size.y / 2 - 75);
+	positions[4] = Vec2(925, GameControl::base_size.y / 2 - 75);
+	positions[5] = Vec2(1055, GameControl::base_size.y / 2 - 75);
 
 	// Darkページ到達フラグをオンに
 	GameControl::flag_visited_dark = true;

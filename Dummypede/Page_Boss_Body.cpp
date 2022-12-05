@@ -228,14 +228,16 @@ void Page_Boss_Body::damaged(){
 }
 
 void Page_Boss_Body::update_dest(){
-	dest = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-size)));
+	// dest = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-size)));
+	dest = RandomVec2(RectF(Vec2::Zero(), GameControl::base_size.movedBy(-size)));
 	prev_pos = pos;
 	move_next_time = Random(10.0, 15.0);
 	move_next_timer.restart();
 }
 
 Page_Boss_Body::Page_Boss_Body(WindowSystemManager& manager)
-	:WindowSystem((Scene::Size() / 2).movedBy(-250, -350), Size(500, 400), U""),
+	: // WindowSystem((Scene::Size() / 2).movedBy(-250, -350), Size(500, 400), U""),
+	WindowSystem((GameControl::base_size / 2).movedBy(-250, -350), Size(500, 400), U""),
 	manager(manager),
 	files_num(0),
 	bodies(0),

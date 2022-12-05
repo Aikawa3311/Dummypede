@@ -120,13 +120,15 @@ void Page_Password::message_display(String const& str){
 }
 
 Page_Password::Page_Password(WindowSystemManager& manager)
-	:WindowSystem(Scene::Center() - Size(400, 200) / 2, Size(400, 200), U"password"),
+	: // WindowSystem(Scene::Center() - Size(400, 200) / 2, Size(400, 200), U"password"),
+	WindowSystem(GameControl::base_size / 2 - Size(400, 200) / 2, Size(400, 200), U"password"),
 	manager(manager),
 	text(U""),
 	editing_text(U""),
 	textarea_rect(size.x/2 - 100, size.y/2 - 10, 200, 30),
 	textarea_active(false),
 	message_rect(size.x/2 - 150, size.y/2 + 40, 300, 30),
-	message(U"") {
+	message(U"")
+{
 	anim_timer.start();
 }

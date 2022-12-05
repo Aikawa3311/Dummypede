@@ -15,7 +15,8 @@ void Page_Numbers::Update(){
 }
 
 Page_Numbers::Page_Numbers()
-	:WindowSystem(Scene::CenterF() - Size(500, 300) / 2, Size(500, 300), U"numbersnumbers"),
+	: // WindowSystem(Scene::CenterF() - Size(500, 300) / 2, Size(500, 300), U"numbersnumbers"),
+	WindowSystem(GameControl::base_size / 2 - Size(500, 300) / 2, Size(500, 300), U"numbersnumbers"),
 	rect((size / 2).movedBy(-200, -100), Size(400, 200)),
 	thinking_tex(U"🤔"_emoji) {
 }

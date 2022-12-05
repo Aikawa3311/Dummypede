@@ -63,7 +63,8 @@ void Page_Boss::Update(){
 			it = eyebeams.erase(it);
 			AudioAsset(U"daon").playOneShot(0.7);
 		}
-		else if (!line.begin.intersects(Scene::Rect()) && !line.end.intersects(Scene::Rect())) {
+		// else if (!line.begin.intersects(Scene::Rect()) && !line.end.intersects(Scene::Rect())) {
+		else if (!line.begin.intersects(Rect(Point::Zero(), GameControl::base_size)) && !line.end.intersects(Rect(Point::Zero(), GameControl::base_size))) {
 			// 外に出たときも削除
 			it = eyebeams.erase(it);
 		}
@@ -144,7 +145,8 @@ void Page_Boss::spawn_eye(){
 	}
 
 	if (num >= 0) {
-		Vec2 eye_pos = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-400, -300)));
+		// Vec2 eye_pos = RandomVec2(RectF(Vec2::Zero(), Scene::Size().movedBy(-400, -300)));
+		Vec2 eye_pos = RandomVec2(RectF(Vec2::Zero(), GameControl::base_size.movedBy(-400, -300)));
 		for (int i = 0; i < num; ++i) {
 			manager.add_page(std::make_shared<Page_Boss_Eye>(*this, eye_pos), false);
 		}
@@ -180,7 +182,8 @@ void Page_Boss::win(){
 }
 
 Page_Boss::Page_Boss(WindowSystemManager& manager)
-	: WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Internet Abyss"),
+	: // WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Internet Abyss"),
+	WindowSystem(Vec2(-50, -50), GameControl::base_size.movedBy(100, 100), U"Internet Abyss"),
 	manager(manager),
 	state(0),
 	state_gameover(0),
@@ -209,7 +212,8 @@ void Page_Boss::DrawDepth2() const{
 
 	// ゲームオーバーの描画
 	if (state_gameover >= 2) {
-		FontAsset(U"ExtraHugeDot")(U"GAME OVER").drawAt(Scene::Size() / 2, Palette::White);
+		// FontAsset(U"ExtraHugeDot")(U"GAME OVER").drawAt(Scene::Size() / 2, Palette::White);
+		FontAsset(U"ExtraHugeDot")(U"GAME OVER").drawAt(GameControl::base_size / 2, Palette::White);
 	}
 }
 

@@ -27,11 +27,13 @@ void Page_Opening::Update(){
 }
 
 void Page_Opening::DrawDepth2() const{
-	Scene::Rect().draw(Palette::Black);
+	// Scene::Rect().draw(Palette::Black);
+	Rect(Point::Zero(), GameControl::base_size).draw(Palette::Black);
 }
 
 Page_Opening::Page_Opening(WindowSystemManager& manager)
-	: WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Opening"),
+	: // WindowSystem(Vec2(-50, -50), Size(Scene::Size()).movedBy(100, 100), U"Opening"),
+	WindowSystem(Vec2(-50, -50), GameControl::base_size.movedBy(100, 100), U"Opening"),
 	manager(manager)
 {
 	AudioAsset(U"pc_start").setVolume(0.4);

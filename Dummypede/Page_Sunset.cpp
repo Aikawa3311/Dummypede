@@ -187,7 +187,8 @@ void Page_Sunset::Update()
 }
 
 Page_Sunset::Page_Sunset(Vec2 const& pos)
-	: WindowSystem(pos, Scene::Size() - (pos * 2).asPoint(), U"Sunset"),
+	: // WindowSystem(pos, Scene::Size() - (pos * 2).asPoint(), U"Sunset"),
+	WindowSystem(pos, GameControl::base_size - (pos * 2).asPoint(), U"Sunset"),
 	rt(size),
 	rt_sun(size),
 	rt_lattice(size),

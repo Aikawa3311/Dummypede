@@ -81,7 +81,8 @@ void Page_Door::Update(){
 }
 
 Page_Door::Page_Door(WindowSystemManager& manager)
-	:WindowSystem(Scene::Size()/2 - Size(400, 400)/2, Size(400, 400), U"Door"),
+	: // WindowSystem(Scene::Size() / 2 - Size(400, 400) / 2, Size(400, 400), U"Door"),
+	WindowSystem(GameControl::base_size/2 - Size(400, 400)/2, Size(400, 400), U"Door"),
 	manager(manager),
 	text(U""),
 	editing_text(U""),

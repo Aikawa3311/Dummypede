@@ -44,14 +44,25 @@ void Main()
 {
 	GameControl::readme_change();
 
-	// 背景の色を設定 | Set background color
+	// 背景の色を設定
 	Scene::SetBackground(ColorF{ 0.8, 0.9, 1.0 });
-	Window::Resize(1200, 800);
+
+	// 設定ファイルの読み込み
+	INI const ini(U"config.ini");
+	Size window_size(GameControl::base_size);
+	if (ini) {
+		if (!ini[U"Window.width"].isEmpty()) {
+			window_size.x = Clamp(Parse<int>(ini[U"Window.width"]), 800, 1920);
+		}
+		if (!ini[U"Window.height"].isEmpty()) {
+			window_size.y = Clamp(Parse<int>(ini[U"Window.height"]), 600, 1080);
+		}
+	}
+	Window::Resize(window_size);
 	Window::SetTitle(U"Dummypede");
 	// Window::SetFullscreen(true);
 
 	// もろもろのアセット登録
-	// FontAsset::Register(U"WindowTitle", 16, U"example/font/RocknRoll/RocknRollOne-Regular.ttf");
 	AssetRegister::Regist();
 
 	// シェーダー準備
@@ -64,6 +75,7 @@ void Main()
 	// シェーダーに渡す定数バッファの準備
 	// const ConstantBuffer<CRTShader> constant_buffer{ { (Float2{ 1.0f, 1.0f } / Scene::Size()) } };
 	Float2 pixel_size = { (float)Scene::Width(), (float)Scene::Height() };
+	// Float2 pixel_size = { (float)1200, (float)800 };
 	const ConstantBuffer<PSPixelSize> constant_buffer1{ { pixel_size } };
 	ConstantBuffer<PSCounter> constant_buffer2;
 
@@ -104,14 +116,22 @@ void Main()
 	Desktop desktop(manager);
 
 	// レンダーテクスチャの用意
-	RenderTexture rt_scene(Scene::Size(), Palette::Black);
-	MSRenderTexture msrt_scene(Scene::Size(), Palette::Black);
+	// MSRenderTexture msrt_scene(Scene::Size(), Palette::Black);
+	MSRenderTexture msrt_scene(Size(GameControl::base_size), Palette::Black);
+	/*BlendState msrt_blend(BlendState::Default2D);
+	msrt_blend.src = Blend::SrcAlpha;
+	msrt_blend.dst = Blend::DestAlpha;
+	msrt_blend.srcAlpha = Blend::One;
+	msrt_blend.dstAlpha = Blend::InvSrcAlpha;*/
 
 	while (System::Update())
 	{
 		/*System::Sleep(100ms);
 		ClearPrint();
 		Print << Profiler::FPS();*/
+
+		// マウスカーソルの位置を解像度に合わせる
+		Transformer2D const transformer{ Mat3x2::Identity(), Mat3x2::Scale((double)window_size.x / GameControl::base_size.x, (double)window_size.y / GameControl::base_size.y) };
 
 		if (KeyControl.down()) {
 			GameControl::flag_shader ^= 1;
@@ -130,23 +150,16 @@ void Main()
 		GameControl::decorator.Update();
 
 		{
-			// レンダーテクスチャへの描画
-			/*ScopedRenderTarget2D target(rt_scene);
-			rt_scene.clear(Palette::Black);
-			desktop.Draw();
-			manager.Draw();
-			GameControl::decorator.Draw();
-			GameControl::decorator.DrawCursor();*/
-		}
-
-		{
 			// マルチサンプルレンダーテクスチャへの描画
 			ScopedRenderTarget2D target(msrt_scene);
-			rt_scene.clear(Palette::Black);
+			// ScopedRenderTarget2D target(msrt_scene.clear(ColorF(0, 0, 0, 0)));
+			// ScopedRenderStates2D renderstate(msrt_blend);
+			
 			desktop.Draw();
 			manager.Draw();
 			GameControl::decorator.Draw();
 			GameControl::decorator.DrawCursor();
+			
 		}
 
 		// 2d描画をフラッシュ、マルチサンプルレンダーテクスチャの内容を確定
@@ -163,10 +176,10 @@ void Main()
 				Graphics2D::SetPSConstantBuffer(2, constant_buffer2);
 
 				const ScopedCustomShader2D shader{ ps };
-				msrt_scene.draw();
+				msrt_scene.resized(window_size).draw();
 			}
 			else {
-				msrt_scene.draw();
+				msrt_scene.resized(window_size).draw();
 			}
 		}
 	}

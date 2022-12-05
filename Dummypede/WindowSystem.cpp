@@ -94,7 +94,8 @@ bool WindowSystem::get_flag_erase() const {
 
 void WindowSystem::set_pos(Vec2 pos_){
 	// 画面内に収まるようにする
-	pos_.clamp(Rect(-size.x + 30, 0, size.x + Scene::Width() - 45, Scene::Height() - 10));
+	// pos_.clamp(Rect(-size.x + 30, 0, size.x + Scene::Width() - 45, Scene::Height() - 10));
+	pos_.clamp(Rect(-size.x + 30, 0, size.x + GameControl::base_size.x - 45, GameControl::base_size.y - 10));
 	pos = pos_;
 	frame_head.set_pos(pos_);
 }

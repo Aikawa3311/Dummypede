@@ -54,7 +54,8 @@ void Desktop::Update() {
 
 void Desktop::Draw() const{
 	// 背景色
-	Scene::Rect().draw(col_bg);
+	// Scene::Rect().draw(col_bg);
+	Rect(Point::Zero(), GameControl::base_size).draw(col_bg);
 	for (int i = 0; i < icon_num; ++i) {
 		draw_icon(i);
 	}

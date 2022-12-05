@@ -32,6 +32,7 @@ void Page_Creepy::Update() {
 }
 
 Page_Creepy::Page_Creepy()
-	:WindowSystem(Vec2(Scene::Width() / 2 - 400 / 2, Scene::Height() / 2 - 150 / 2), Size(400, 150), U"Creepy?")
+	: // WindowSystem(Vec2(Scene::Width() / 2 - 400 / 2, Scene::Height() / 2 - 150 / 2), Size(400, 150), U"Creepy?")
+	WindowSystem(Vec2(GameControl::base_size.x / 2 - 400 / 2, GameControl::base_size.y / 2 - 150 / 2), Size(400, 150), U"Creepy?")
 {
 }

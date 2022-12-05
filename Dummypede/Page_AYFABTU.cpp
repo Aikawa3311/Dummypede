@@ -13,7 +13,9 @@ void Page_AYFABTU::Update(){
 }
 
 Page_AYFABTU::Page_AYFABTU()
-	: WindowSystem(Scene::Size() - Size(400, 200), Size(400, 200), U"ayfabtu"){
+	: // WindowSystem(Scene::Size() - Size(400, 200), Size(400, 200), U"ayfabtu"){
+	WindowSystem(GameControl::base_size - Size(400, 200), Size(400, 200), U"ayfabtu")
+{
 	set_erasable(false);
 	window_alpha = 0.5;
 }

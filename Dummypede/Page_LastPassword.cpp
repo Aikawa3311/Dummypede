@@ -13,5 +13,6 @@ void Page_LastPassword::Update(){
 }
 
 Page_LastPassword::Page_LastPassword()
-	:WindowSystem(Scene::Center().movedBy(-125, -50), Size(250, 100), U"Last Password"){
+	: // WindowSystem(Scene::Center().movedBy(-125, -50), Size(250, 100), U"Last Password"){
+	WindowSystem((GameControl::base_size/2).movedBy(-125, -50), Size(250, 100), U"Last Password") {
 }

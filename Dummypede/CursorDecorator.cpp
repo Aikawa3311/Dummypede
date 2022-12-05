@@ -26,6 +26,7 @@ void CursorDecorator::DrawCursor() const{
 	if (cursor_state != 0) return;
 
 	// cursor_styleに合わせてcursor画像を描画
+	// cursorの描画位置はカーソル位置に依存しているが、Transformer2Dでカーソル位置を変換しているため描画はズレない
 	switch (cursor_style) {
 	case 0:
 		TextureAsset(U"cursor_normal").draw(Cursor::PosF());

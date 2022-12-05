@@ -1,6 +1,7 @@
 ﻿// Pageのテンプレート
 #pragma once
 #include "WindowSystem.h"
+#include "GameControl.h"
 
 class Page_Sunset : public WindowSystem {
 private:
