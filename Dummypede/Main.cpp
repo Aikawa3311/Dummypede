@@ -51,13 +51,30 @@ void Main()
 	INI const ini(U"config.ini");
 	Size window_size(GameControl::base_size);
 	if (ini) {
-		if (!ini[U"Window.width"].isEmpty()) {
-			window_size.x = Clamp(Parse<int>(ini[U"Window.width"]), 800, 1920);
+		if (!ini[U"Window.auto"].isEmpty() && Parse<int>(ini[U"Window.auto"]) != 0) {
+			// 自動で解像度変更
+			// モニタサイズを取得
+			Size monitor_reso = System::GetCurrentMonitor().fullscreenResolution;
+			if (window_size.x > monitor_reso.x || window_size.y > monitor_reso.y) {
+				// 1200 x 800がモニターサイズを超過してしまう場合
+				// 比率を保ちつつ、モニターサイズに収まるようにリサイズ
+				double r = Min((double)monitor_reso.x / window_size.x, (double)monitor_reso.y / window_size.y);
+				r -= 0.1;
+				window_size.x = static_cast<int32>(window_size.x * r);
+				window_size.y = static_cast<int32>(window_size.y * r);
+			}
 		}
-		if (!ini[U"Window.height"].isEmpty()) {
-			window_size.y = Clamp(Parse<int>(ini[U"Window.height"]), 600, 1080);
+		else {
+			// width, heightの読み込み
+			if (!ini[U"Window.width"].isEmpty()) {
+				window_size.x = Clamp(Parse<int>(ini[U"Window.width"]), 800, 1920);
+			}
+			if (!ini[U"Window.height"].isEmpty()) {
+				window_size.y = Clamp(Parse<int>(ini[U"Window.height"]), 600, 1080);
+			}
 		}
 	}
+
 	Window::Resize(window_size);
 	Window::SetTitle(U"Dummypede");
 	// Window::SetFullscreen(true);
@@ -75,7 +92,7 @@ void Main()
 	// シェーダーに渡す定数バッファの準備
 	// const ConstantBuffer<CRTShader> constant_buffer{ { (Float2{ 1.0f, 1.0f } / Scene::Size()) } };
 	Float2 pixel_size = { (float)Scene::Width(), (float)Scene::Height() };
-	// Float2 pixel_size = { (float)1200, (float)800 };
+	// Float2 pixel_size = { (float)GameControl::base_size.x, (float)GameControl::base_size.y };
 	const ConstantBuffer<PSPixelSize> constant_buffer1{ { pixel_size } };
 	ConstantBuffer<PSCounter> constant_buffer2;
 
@@ -151,7 +168,7 @@ void Main()
 
 		{
 			// マルチサンプルレンダーテクスチャへの描画
-			ScopedRenderTarget2D target(msrt_scene);
+			ScopedRenderTarget2D target(msrt_scene.clear(Palette::Black));
 			// ScopedRenderTarget2D target(msrt_scene.clear(ColorF(0, 0, 0, 0)));
 			// ScopedRenderStates2D renderstate(msrt_blend);
 			
