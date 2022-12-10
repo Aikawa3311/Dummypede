@@ -56,7 +56,7 @@ void Page_Ending::Update(){
 		break;
 	case 2:
 		// 右からスタッフロール
-		staffs[anim_increment].moveBy(Vec2(-Scene::DeltaTime() * 150, 0.0));
+		staffs[anim_increment].moveBy(Vec2(-Scene::DeltaTime() * 130, 0.0));
 		// if (staffs[anim_increment].get_pos().distanceFromSq(Scene::CenterF().moveBy(-180, 0)) <= 1) {
 		// if (staffs[anim_increment].get_pos().x - (Scene::CenterF().x - 180) <= 0) {
 		if (staffs[anim_increment].get_pos().x - (GameControl::base_size.x / 2.0 - 180) <= 0) {
@@ -114,6 +114,7 @@ void Page_Ending::make_staffroll(){
 	 staffs.emplace_back(U"staffroll_image", U"アイコン・画像素材\nFont Awesome\nNew Factory");
 	 staffs.emplace_back(U"staffroll_audio", U"効果音素材\n効果音ラボ");
 	 staffs.emplace_back(U"staffroll_font", U"フォント素材\nDSEG (created by けしかん)");
+	 staffs.emplace_back(U"staffroll_testplayer", U"テストプレイ\nDaylight\niyoK\nJim\nTano\nTozan");
 }
 
 void Page_Ending::DrawDepth2() const{

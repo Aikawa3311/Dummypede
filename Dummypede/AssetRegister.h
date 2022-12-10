@@ -139,6 +139,7 @@ public:
 		TextureAsset::Register(U"staffroll_image", 0xf1c5_icon, 50);
 		TextureAsset::Register(U"staffroll_audio", 0xf1c7_icon, 50);
 		TextureAsset::Register(U"staffroll_font", 0xf031_icon, 50);
+		TextureAsset::Register(U"staffroll_testplayer", 0xf007_icon, 50);
 
 		// new factory(https://new-factory.jp/)の素材
 		TextureAsset::Register(U"tetra", Resource(U"image/tetra.jpg"));
