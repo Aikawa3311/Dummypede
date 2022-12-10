@@ -24,12 +24,11 @@ private:
 	Optional<int> booked_focus_page;
 	// レンダーテクスチャの用意
 
-
 	// ★ここに他のページとやり取りする/やり取りされるページのstd::weak_ptrを追加
 	// std::weak_ptr<Page1> page1;
-	std::weak_ptr<Page_CentipedeGame> page_centipedegame;
+	Array<std::weak_ptr<Page_CentipedeGame>> page_centipedegame;
 	std::weak_ptr<Page_Light> page_light;
-	std::weak_ptr<Page_Screen> page_screen;
+	Array<std::weak_ptr<Page_Screen>> page_screen;
 	std::weak_ptr<Page_Boss_Body> page_boss_body;
 
 	// pages配列の最後尾のpageのフォーカスを外し、index番目のpageを配列の最後尾に送ってそれをフォーカスする
@@ -69,9 +68,9 @@ public:
 
 	// ★ここにリアクションページのゲッター
 	// std::weak_ptr<Page1>& get_page1();
-	std::weak_ptr<Page_CentipedeGame>& get_page_centipede_game();
+	Array<std::weak_ptr<Page_CentipedeGame>>& get_page_centipede_game();
 	std::weak_ptr<Page_Light>& get_page_light();
-	std::weak_ptr<Page_Screen>& get_page_screen();
+	Array<std::weak_ptr<Page_Screen>>& get_page_screen();
 	std::weak_ptr<Page_Boss_Body>& get_page_boss_body();
 
 	// ページ一覧のrefを返す

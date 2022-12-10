@@ -9,16 +9,23 @@ void Page_MyriadTetrapod::Draw() const{
 		Vec2 calibration = Vec2::Zero();
 		calibration.x = Min(0.0, screen_base.x - drag_pos.x);
 		calibration.y = Min(0.0, screen_base.y - drag_pos.y);
-		if (std::shared_ptr<Page_Screen> p = manager.get_page_screen().lock()) {
-			ScopedViewport2D viewport(screen.pos.movedBy(pos).asPoint(), screen.size.asPoint());
-			for (int i = 0; i < item_num; ++i) {
-				// TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(p->get_pos() + calibration));
-				// TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(-screen.pos.movedBy(pos) - p->get_pos() + calibration));
-				TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(-p->get_pos() + calibration), p->get_color());
+
+		bool lock_failure = true;
+		auto& pages_screen = manager.get_page_screen();
+		if (!pages_screen.isEmpty()) {
+			if (std::shared_ptr<Page_Screen> p = pages_screen.back().lock()) {
+				lock_failure = false;
+				ScopedViewport2D viewport(screen.pos.movedBy(pos).asPoint(), screen.size.asPoint());
+				for (int i = 0; i < item_num; ++i) {
+					// TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(p->get_pos() + calibration));
+					// TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(-screen.pos.movedBy(pos) - p->get_pos() + calibration));
+					TextureAsset(icons_name[i]).draw(icons_pos[i].movedBy(-p->get_pos() + calibration), p->get_color());
+				}
+				TextureAsset(U"DoorClosed").draw(icon_door.movedBy(-p->get_pos() + calibration), Palette::Red);
 			}
-			TextureAsset(U"DoorClosed").draw(icon_door.movedBy(-p->get_pos() + calibration), Palette::Red);
 		}
-		else {
+
+		if(lock_failure) {
 			FontAsset(U"Regular")(U"screen監視:未作動").drawAt(screen_base.pos.movedBy(-drag_pos + screen_base.size/2), Palette::White);
 		}
 	}
@@ -51,19 +58,22 @@ void Page_MyriadTetrapod::Update(){
 		}
 	}
 	// ドアクリック
-	if (std::shared_ptr<Page_Screen> p = manager.get_page_screen().lock()) {
-		Vec2 calibration = Vec2::Zero();
-		calibration.x = Min(0.0, screen_base.x - drag_pos.x);
-		calibration.y = Min(0.0, screen_base.y - drag_pos.y);
-		//ClearPrint();
-		//Print << screen.movedBy(pos).intersects(Cursor::PosF());
-		//Print << RectF(icon_door.movedBy(pos + screen.pos - p->get_pos() + calibration), 30, 40).intersects(Cursor::PosF());
-		if (screen.movedBy(pos).intersects(Cursor::PosF()) && RectF(icon_door.movedBy(pos + screen.pos - p->get_pos() + calibration), 30, 40).intersects(Cursor::PosF())) {
-			// Cursor::RequestStyle(CursorStyle::Hand);
-			// Cursor::RequestStyle(U"hand");
-			GameControl::decorator.RequestStyle(U"hand");
-			if (MouseL.down()) {
-				manager.add_page(std::make_shared<Page_Door>(manager));
+	auto& pages_screen = manager.get_page_screen();
+	if (!pages_screen.isEmpty()) {
+		if (std::shared_ptr<Page_Screen> p = pages_screen.back().lock()) {
+			Vec2 calibration = Vec2::Zero();
+			calibration.x = Min(0.0, screen_base.x - drag_pos.x);
+			calibration.y = Min(0.0, screen_base.y - drag_pos.y);
+			//ClearPrint();
+			//Print << screen.movedBy(pos).intersects(Cursor::PosF());
+			//Print << RectF(icon_door.movedBy(pos + screen.pos - p->get_pos() + calibration), 30, 40).intersects(Cursor::PosF());
+			if (screen.movedBy(pos).intersects(Cursor::PosF()) && RectF(icon_door.movedBy(pos + screen.pos - p->get_pos() + calibration), 30, 40).intersects(Cursor::PosF())) {
+				// Cursor::RequestStyle(CursorStyle::Hand);
+				// Cursor::RequestStyle(U"hand");
+				GameControl::decorator.RequestStyle(U"hand");
+				if (MouseL.down()) {
+					manager.add_page(std::make_shared<Page_Door>(manager));
+				}
 			}
 		}
 	}

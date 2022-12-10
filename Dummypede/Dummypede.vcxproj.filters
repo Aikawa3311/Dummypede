@@ -183,9 +183,6 @@
     <ClCompile Include="Page_404.cpp">
       <Filter>Source Files\Pages</Filter>
     </ClCompile>
-    <ClCompile Include="Page_AlotofFiles.cpp">
-      <Filter>Source Files\Pages</Filter>
-    </ClCompile>
     <ClCompile Include="Page_AYFABTU.cpp">
       <Filter>Source Files\Pages</Filter>
     </ClCompile>
@@ -987,9 +984,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_404.h">
-      <Filter>Header Files\Pages</Filter>
-    </ClInclude>
-    <ClInclude Include="Page_AlotofFiles.h">
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
     <ClInclude Include="Page_AYFABTU.h">

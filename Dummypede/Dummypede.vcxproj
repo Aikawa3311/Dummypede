@@ -122,7 +122,6 @@
     <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Page_404.cpp" />
-    <ClCompile Include="Page_AlotofFiles.cpp" />
     <ClCompile Include="Page_AYFABTU.cpp" />
     <ClCompile Include="Page_Boss.cpp" />
     <ClCompile Include="Page_Boss_Body.cpp" />
@@ -378,7 +377,6 @@
     <ClInclude Include="Desktop.h" />
     <ClInclude Include="GameControl.h" />
     <ClInclude Include="Page_404.h" />
-    <ClInclude Include="Page_AlotofFiles.h" />
     <ClInclude Include="Page_AYFABTU.h" />
     <ClInclude Include="Page_Boss.h" />
     <ClInclude Include="Page_Boss_Body.h" />

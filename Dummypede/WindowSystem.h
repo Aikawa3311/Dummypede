@@ -32,7 +32,8 @@ protected:
 	bool flag_erase = false;
 	
 	// ウィンドウタイトル
-	String title = U"<no name>";
+	String title = U"<no name>";	// 表示名
+	String original_title;			// 識別名
 	Vec2 pos;
 	Size size;
 	double window_alpha;			// ウィンドウの透明度、現在未使用
@@ -67,24 +68,19 @@ public:
 	void moveBy(Vec2 const & v);
 
 	// タイトル名を取得
-	String get_title() const {
-		return title;
-	}
+	String get_title() const;
+
+	// 識別名（変化しないタイトル）を取得
+	String get_original_title() const;
 
 	// 座標を取得
-	Vec2 get_pos() const {
-		return pos;
-	}
+	Vec2 get_pos() const;
 
 	// サイズを取得
-	Size get_size() const {
-		return size;
-	}
+	Size get_size() const;
 
 	// ウィンドウのアクティブ状況を取得
-	bool get_active() const {
-		return active;
-	}
+	bool get_active() const;
 
 	// フォーカス可能状態の取得
 	bool get_focusable() const;
@@ -93,9 +89,7 @@ public:
 	bool get_flag_erase() const;
 
 	// ウィンドウのアクティブ状況を変更
-	void set_active(bool const active_) {
-		active = active_;
-	}
+	void set_active(bool const active_);
 
 	// ウィンドウを指定の位置に配置する
 	void set_pos(Vec2 pos_);

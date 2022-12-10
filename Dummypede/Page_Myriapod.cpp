@@ -56,32 +56,38 @@ void Page_Myriapod::Draw() const {
 		}
 	}
 	// centipede gameとやり取り
-	if (std::shared_ptr<Page_CentipedeGame> page = manager.get_page_centipede_game().lock()) {
-		if (page->get_state() <= 2) return;
-		ColorF blend(0.5, 0.5, 0.5);
-		const ScopedColorMul2D colorMul{ page->get_state() == 5 ? blend : ColorF(1, 1, 1) };
-		page->get_centipede().bodies_movedBy(page->get_pos() - get_pos()).Draw();
+	auto& pages_centipedegame = manager.get_page_centipede_game();
+	for (int i = 0; i < (int)pages_centipedegame.size(); ++i) {
+		if (std::shared_ptr<Page_CentipedeGame> page = pages_centipedegame[i].lock()) {
+			if (page->get_state() <= 2) return;
+			ColorF blend(0.5, 0.5, 0.5);
+			const ScopedColorMul2D colorMul{ page->get_state() == 5 ? blend : ColorF(1, 1, 1) };
+			page->get_centipede().bodies_movedBy(page->get_pos() - get_pos()).Draw();
+		}
 	}
 }
 
 void Page_Myriapod::Update() {
 	// centipede gameとやり取り
-	if (std::shared_ptr<Page_CentipedeGame> page = manager.get_page_centipede_game().lock()) {
-		// stateがゲーム中なら処理を行う
-		if (page->get_state() != 3) return;
+	auto& pages_centipedegame = manager.get_page_centipede_game();
+	for (int i = 0; i < (int)pages_centipedegame.size(); ++i) {
+		if (std::shared_ptr<Page_CentipedeGame> page = pages_centipedegame[i].lock()) {
+			// stateがゲーム中なら処理を行う
+			if (page->get_state() != 3) return;
 
-		Centipede const& centipede = page->get_centipede();
-		// centipedeの先頭の円とファイルの交差判定を行う
-		Circle circ = centipede.get_body_front().get_circle().movedBy(page->get_pos() - get_pos());
-		// myriapodがアクティブでなく、かつcentipedeがcentipede gameのウィンドウ内にいる場合は交差判定を行わない
-		if (!active && page->rect().stretched(-10, -10).intersects(circ.center.movedBy(get_pos()))) return;
-		for (auto y : step(files.height())) {
-			for (auto x : step(files.width())) {
-				if (!files[y][x] || !Rect(-file_size / 2 + file_size * Size(x, y), file_size).intersects(circ)) continue;
+			Centipede const& centipede = page->get_centipede();
+			// centipedeの先頭の円とファイルの交差判定を行う
+			Circle circ = centipede.get_body_front().get_circle().movedBy(page->get_pos() - get_pos());
+			// myriapodがアクティブでなく、かつcentipedeがcentipede gameのウィンドウ内にいる場合は交差判定を行わない
+			if (!active && page->rect().stretched(-10, -10).intersects(circ.center.movedBy(get_pos()))) return;
+			for (auto y : step(files.height())) {
+				for (auto x : step(files.width())) {
+					if (!files[y][x] || !Rect(-file_size / 2 + file_size * Size(x, y), file_size).intersects(circ)) continue;
 
-				// 交差している場合
-				files[y][x] = false;
-				page->score_increment();
+					// 交差している場合
+					files[y][x] = false;
+					page->score_increment();
+				}
 			}
 		}
 	}

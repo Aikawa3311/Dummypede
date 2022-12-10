@@ -3,6 +3,7 @@
 
 WindowSystem::WindowSystem(Vec2 const& pos_, Size const& size_, String const& title_)
 	: title(title_),
+	original_title(title_),
 	pos(pos_),
 	size(size_),
 	render_texture(size, Palette::White),
@@ -84,12 +85,36 @@ void WindowSystem::moveBy(Vec2 const& v){
 	set_pos(pos + v);
 }
 
+String WindowSystem::get_title() const{
+	return title;
+}
+
+String WindowSystem::get_original_title() const{
+	return original_title;
+}
+
+Vec2 WindowSystem::get_pos() const{
+	return pos;
+}
+
+Size WindowSystem::get_size() const{
+	return size;
+}
+
+bool WindowSystem::get_active() const{
+	return active;
+}
+
 bool WindowSystem::get_focusable() const {
 	return focusable;
 }
 
 bool WindowSystem::get_flag_erase() const {
 	return flag_erase;
+}
+
+void WindowSystem::set_active(bool const active_){
+	active = active_;
 }
 
 void WindowSystem::set_pos(Vec2 pos_){

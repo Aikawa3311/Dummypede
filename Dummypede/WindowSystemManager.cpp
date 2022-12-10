@@ -19,12 +19,17 @@ void WindowSystemManager::Update() {
 		}
 	}
 
+	ClearPrint();
+	Print << page_centipedegame.size() << U" " << page_centipedegame.isEmpty();
+	Print << page_screen.size() << U" " << page_screen.isEmpty();
+
 	// 全ページのUpdateを起動
 	for (auto const& i : pages) {
 		i->UpdateWindow();
 	}
 
 	// 全pageの閉じるボタン & 削除フラグをチェック
+	bool erase_flag = false;
 	for (auto it = pages.begin(); it != pages.end();) {
 		if ((*it)->close_button_down() || (*it)->get_flag_erase()) {
 			// 削除
@@ -33,9 +38,35 @@ void WindowSystemManager::Update() {
 				(*(it - 1))->set_active(true);
 			}
 			it = pages.erase(it);
+			erase_flag = true;
 		}
 		else {
 			++it;
+		}
+	}
+
+	// ウィンドウが消されている場合、page_centipedegameとpage_screenの更新をする
+	if (erase_flag) {
+		// centipedegame
+		for (auto it = page_centipedegame.begin(); it != page_centipedegame.end();) {
+			if ((*it).expired()) {
+				// 削除
+				it = page_centipedegame.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+
+		// screen
+		for (auto it = page_screen.begin(); it != page_screen.end();) {
+			if ((*it).expired()) {
+				// 削除
+				it = page_screen.erase(it);
+			}
+			else {
+				++it;
+			}
 		}
 	}
 
@@ -97,7 +128,7 @@ bool WindowSystemManager::exist_page_name(String const& str){
 
 int WindowSystemManager::page_name_to_page_number(String const& str){
 	for (int i = 0; i < (int)pages.size(); ++i) {
-		if (pages[i]->get_title() == str) {
+		if (pages[i]->get_original_title() == str) {
 			return i;
 		}
 	}
@@ -132,7 +163,9 @@ void WindowSystemManager::erase_window(int const idx){
 }
 
 void WindowSystemManager::set_page_centipedegame(std::shared_ptr<Page_CentipedeGame>& page_){
-	page_centipedegame = page_;
+	std::weak_ptr<Page_CentipedeGame> ptr = page_;
+	page_centipedegame.emplace_back(std::move(ptr));
+	// page_centipedegame = page_;
 }
 
 void WindowSystemManager::set_page_light(std::shared_ptr<Page_Light>& page_){
@@ -140,14 +173,16 @@ void WindowSystemManager::set_page_light(std::shared_ptr<Page_Light>& page_){
 }
 
 void WindowSystemManager::set_page_screen(std::shared_ptr<Page_Screen>& page_){
-	page_screen = page_;
+	std::weak_ptr<Page_Screen> ptr = page_;
+	page_screen.emplace_back(std::move(ptr));
+	// page_screen = page_;
 }
 
 void WindowSystemManager::set_page_boss_body(std::shared_ptr<Page_Boss_Body>& page_){
 	page_boss_body = page_;
 }
 
-std::weak_ptr<Page_CentipedeGame>& WindowSystemManager::get_page_centipede_game(){
+Array<std::weak_ptr<Page_CentipedeGame>>& WindowSystemManager::get_page_centipede_game(){
 	return page_centipedegame;
 }
 
@@ -155,7 +190,7 @@ std::weak_ptr<Page_Light>& WindowSystemManager::get_page_light(){
 	return page_light;
 }
 
-std::weak_ptr<Page_Screen>& WindowSystemManager::get_page_screen(){
+Array<std::weak_ptr<Page_Screen>>& WindowSystemManager::get_page_screen(){
 	return page_screen;
 }
 
