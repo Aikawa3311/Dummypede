@@ -19,10 +19,6 @@ void WindowSystemManager::Update() {
 		}
 	}
 
-	ClearPrint();
-	Print << page_centipedegame.size() << U" " << page_centipedegame.isEmpty();
-	Print << page_screen.size() << U" " << page_screen.isEmpty();
-
 	// 全ページのUpdateを起動
 	for (auto const& i : pages) {
 		i->UpdateWindow();

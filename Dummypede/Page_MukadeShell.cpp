@@ -190,7 +190,7 @@ void Page_MukadeShell::command_sword(){
 	}
 	else {
 		GameControl::decorator.set_sword();
-		set_text_bot(U"swordを着用します");
+		set_text_bot(U"swordを着用します\nswordコマンドでswordを外せます");
 	}
 }
 
