@@ -146,6 +146,7 @@
     <ClCompile Include="Page_Door.cpp" />
     <ClCompile Include="Page_Dummypede.cpp" />
     <ClCompile Include="Page_Ending.cpp" />
+    <ClCompile Include="Page_Evnnzqfef20.cpp" />
     <ClCompile Include="Page_Eye.cpp" />
     <ClCompile Include="Page_FeedFiles.cpp" />
     <ClCompile Include="Page_ISBN.cpp" />
@@ -401,6 +402,7 @@
     <ClInclude Include="Page_Door.h" />
     <ClInclude Include="Page_Dummypede.h" />
     <ClInclude Include="Page_Ending.h" />
+    <ClInclude Include="Page_Evnnzqfef20.h" />
     <ClInclude Include="Page_Eye.h" />
     <ClInclude Include="Page_FeedFiles.h" />
     <ClInclude Include="Page_ISBN.h" />

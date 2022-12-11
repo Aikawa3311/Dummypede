@@ -55,7 +55,7 @@ void Page_Dummypede::Update(){
 					break;
 				case 1:
 					// 目線ページ
-					manager.add_page(std::make_shared<Page_Eye>());
+					manager.add_page(std::make_shared<Page_Eye>(manager));
 					break;
 				case 2:
 					// MukadeTalker

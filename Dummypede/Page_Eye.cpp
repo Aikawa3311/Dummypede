@@ -18,6 +18,9 @@ void Page_Eye::Draw() const{
 		else if (e <= 4.0 / 12.0) asset_name = U"eye3";
 		else if (e <= 5.0 / 12.0) asset_name = U"eye2";
 		else asset_name = U"eye1";
+
+		// on_lightなら目を開けない
+		// if (on_light && e >= 6.0 / 12.0) asset_name = U"eye1";
 	}
 	TextureAsset(asset_name).draw(Vec2::Zero());
 }
@@ -40,9 +43,31 @@ void Page_Eye::Update(){
 		eye_pos = c_pos;
 	}
 
+	// Page_lightの処理
+	//if (std::shared_ptr<Page_Light> page = manager.get_page_light().lock()) {
+	//	// 距離を計算
+	//	double length = ((size / 2) - (page->get_pos() + page->get_size() / 2 - pos)).lengthSq();
+	//	ClearPrint();
+	//	Print << length;
+	//	if (length < eye_outer_r * eye_outer_r) {
+	//		// on_lightフラグのオン
+	//		if (!on_light) {
+	//			on_light = true;
+	//			blink();
+	//		}
+	//	}
+	//	else {
+	//		on_light = false;
+	//	}
+	//}
+	//else {
+	//	// Lightが無いときはfalse
+	//	on_light = false;
+	//}
+
 	// まばたき判定
 	if (Periodic::Square0_1(50ms) == 1.0) {
-		if (blink_flag || anim_timer.isRunning()) return;
+		if (blink_flag || anim_timer.isRunning() || on_light) return;
 		blink_flag = true;
 		if (Random() < 0.01) {
 			blink();
@@ -53,12 +78,15 @@ void Page_Eye::Update(){
 	}
 }
 
-Page_Eye::Page_Eye()
+Page_Eye::Page_Eye(WindowSystemManager& manager)
 	:WindowSystem(Vec2(700, 70), Size(400, 300), U"eye"),
+	manager(manager),
 	eye_outer_r(45),
 	eye_inner_r(20),
 	eye_pos(size/2),
-	blink_flag(false){
+	blink_flag(false),
+	on_light(false)
+{
 }
 
 void Page_Eye::blink(){

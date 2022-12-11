@@ -79,6 +79,9 @@ void Page_OnlyOneWeb::jump_page() const{
 	else if (tmp_text == U"creepy") {
 		manager.add_page(std::make_shared<Page_Creepy>());
 	}
+	else if (tmp_text == U"evnnzqfef20") {
+		manager.add_page(std::make_shared<Page_Evnnzqfef20>());
+	}
 	else {
 		manager.add_page(std::make_shared<Page_404>());
 	}
