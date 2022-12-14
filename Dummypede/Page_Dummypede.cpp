@@ -109,7 +109,7 @@ void Page_Dummypede::Update(){
 		}
 
 		// darkページへのショートカット
-		if (RectF(darkpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
+		if (GameControl::flag_visited_dark && RectF(darkpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
 			GameControl::decorator.RequestStyle(U"hand");
 			darkpage_shorcut_col = Palette::Cornflowerblue;
 			if (MouseL.down()) {
@@ -120,7 +120,8 @@ void Page_Dummypede::Update(){
 			darkpage_shorcut_col = Palette::White;
 		}
 
-		if (RectF(darkerpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
+		// darkerページのショートカット
+		if (GameControl::flag_visited_darker && RectF(darkerpage_shortcut_pos, Vec2(30, 30)).intersects(Cursor::PosF().movedBy(-pos))) {
 			GameControl::decorator.RequestStyle(U"hand");
 			darkerpage_shorcut_col = Palette::Cornflowerblue;
 			if (MouseL.down()) {
