@@ -49,14 +49,16 @@ void Page_Evnnzqfef20::Update()
 
 		// textの更新
 		if (!Keyboard::GetAllInputs().isEmpty() && !input_lag.isRunning()) {
-			if (KeyEnter.down()) {
-				// text送り
-				AudioAsset(U"cancel").playOneShot(0.9);
-				++user_text_num;
-				turn_change();
+			if (KeyEnter.pressed()) {
+				if (user_text_seek >= users_text[user_text_num].length()) {
+					// text送り
+					AudioAsset(U"cancel").playOneShot(0.9);
+					++user_text_num;
+					turn_change();
+				}
 			}
 			else {
-				if (user_text_seek < users_text[user_text_num].length() && !input_timer.isRunning()) {
+				if (!KeyEnter.up() && user_text_seek < users_text[user_text_num].length() && !input_timer.isRunning()) {
 					++user_text_seek;
 					whole_text.front() = users_text[user_text_num].substr(0, user_text_seek);
 					AudioAsset(U"type").playOneShot(0.7);
